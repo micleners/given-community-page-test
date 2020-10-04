@@ -27,29 +27,29 @@ request.onload = function () {
       card.appendChild(h3Name);
 
       var h3DisplayName = document.createElement('h3');
-      h3DisplayName.textContent = company.pDisplayName;
+      h3DisplayName.textContent = company.displayName;
       h3DisplayName.setAttribute('class', 'display-name');
       card.appendChild(h3DisplayName);
 
       var logo = document.createElement('img');
       logo.src = company.logo;
-      logo.alt = company.pDisplayName + ' Logo';
-      h3DisplayName.setAttribute('class', 'company-logo');
+      logo.alt = company.DisplayName + ' Logo';
+      logo.setAttribute('class', 'company-logo');
       card.appendChild(logo);
 
       var pLevel = document.createElement('p');
       pLevel.textContent = company.level;
-      pName.setAttribute('class', 'giving-level');
+      pLevel.setAttribute('class', 'giving-level');
       card.appendChild(pLevel);
 
       var pWebsites = document.createElement('p');
       pWebsites.textContent = company.website;
-      pName.setAttribute('class', 'website-url');
+      pWebsites.setAttribute('class', 'website-url');
       card.appendChild(pWebsites);
 
       var pMetro = document.createElement('p');
       pMetro.textContent = company.metro;
-      pName.setAttribute('class', 'metro');
+      pMetro.setAttribute('class', 'metro');
       card.appendChild(pMetro);
 
       // Append the card to the div with "Cards-Container" id
