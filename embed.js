@@ -16,42 +16,40 @@ request.onload = function () {
   if (request.status >= 200 && request.status < 400) {
     console.log(data)
     data.forEach((company) => {
-      // Create a div with a "Sample Card" class
-      const card = document.createElement('div');
+      var card = document.createElement('div');
       console.log(card);
       card.setAttribute('class', 'company-card');
 
-      // Create an h3 and set the text content to the film's title
-      const h3 = document.createElement('h3');
+      var h3 = document.createElement('h3');
       h3.textContent = company.slug;
       card.appendChild(h3);
 
-      const pName = document.createElement('p');
+      var pName = document.createElement('p');
       pName.textContent = company.name;
       pName.setAttribute('class', 'name-field')
       card.appendChild(pName);
 
-      const pDisplayName = document.createElement('p');
+      var pDisplayName = document.createElement('p');
       pDisplayName.textContent = company.displayName;
       pName.setAttribute('class', 'name-field')
       card.appendChild(pDisplayName);
 
-      const logo = document.createElement('img')
+      var logo = document.createElement('img')
       logo.src = company.logo
       logo.alt = "Company Logo"
       card.appendChild(logo);
 
-      const pLevel = document.createElement('p');
+      var pLevel = document.createElement('p');
       pLevel.textContent = company.level;
       pName.setAttribute('class', 'name-field')
       card.appendChild(pLevel);
 
-      const pWebsites = document.createElement('p');
+      var pWebsites = document.createElement('p');
       pWebsites.textContent = company.website;
       pName.setAttribute('class', 'name-field')
       card.appendChild(pWebsites);
 
-      const pMetro = document.createElement('p');
+      var pMetro = document.createElement('p');
       pMetro.textContent = company.metro;
       pName.setAttribute('class', 'name-field')
       card.appendChild(pMetro);
