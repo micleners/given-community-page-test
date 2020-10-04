@@ -14,44 +14,42 @@ request.onload = function () {
   var data = JSON.parse(this.response);
 
   if (request.status >= 200 && request.status < 400) {
-    console.log(data)
+    console.log(data);
     data.forEach((company) => {
       var card = document.createElement('div');
       console.log(card);
       card.setAttribute('class', 'company-card');
 
-      var h3 = document.createElement('h3');
-      h3.textContent = company.slug;
-      card.appendChild(h3);
+      var companySlug = company.slug;
+      var h3Name = document.createElement('h3');
+      h3Name.textContent = company.name;
+      h3Name.setAttribute('class', 'name');
+      card.appendChild(h3Name);
 
-      var pName = document.createElement('p');
-      pName.textContent = company.name;
-      pName.setAttribute('class', 'name-field')
-      card.appendChild(pName);
+      var h3DisplayName = document.createElement('h3');
+      h3DisplayName.textContent = company.pDisplayName;
+      h3DisplayName.setAttribute('class', 'display-name');
+      card.appendChild(h3DisplayName);
 
-      var pDisplayName = document.createElement('p');
-      pDisplayName.textContent = company.displayName;
-      pName.setAttribute('class', 'name-field')
-      card.appendChild(pDisplayName);
-
-      var logo = document.createElement('img')
-      logo.src = company.logo
-      logo.alt = "Company Logo"
+      var logo = document.createElement('img');
+      logo.src = company.logo;
+      logo.alt = company.pDisplayName + ' Logo';
+      h3DisplayName.setAttribute('class', 'company-logo');
       card.appendChild(logo);
 
       var pLevel = document.createElement('p');
       pLevel.textContent = company.level;
-      pName.setAttribute('class', 'name-field')
+      pName.setAttribute('class', 'giving-level');
       card.appendChild(pLevel);
 
       var pWebsites = document.createElement('p');
       pWebsites.textContent = company.website;
-      pName.setAttribute('class', 'name-field')
+      pName.setAttribute('class', 'website-url');
       card.appendChild(pWebsites);
 
       var pMetro = document.createElement('p');
       pMetro.textContent = company.metro;
-      pName.setAttribute('class', 'name-field')
+      pName.setAttribute('class', 'metro');
       card.appendChild(pMetro);
 
       // Append the card to the div with "Cards-Container" id
