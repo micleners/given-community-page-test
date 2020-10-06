@@ -7,58 +7,40 @@ request.open(
   'https://us-central1-given-test.cloudfunctions.net/getAllCompanies',
   true
 );
-//
 
 request.onload = function () {
   // Begin accessing JSON data here
   var data = JSON.parse(this.response);
 
   if (request.status >= 200 && request.status < 400) {
-    console.log(data);
-    data.forEach((company) => {
-      var card = document.createElement('div');
-      console.log(card);
-      card.setAttribute('class', 'company-card');
+    ['gold', 'silver', 'bronze'].forEach((level) => {
+      data[level].forEach((company) => {
+        var card = document.createElement('a');
+        console.log(card);
+        card.setAttribute('class', `company-card ${level} card link`);
+        card.setAttribute('href', company.website);
+        card.setAttribute('target', '_blank');
 
-      var companySlug = company.slug;
-      var h3Name = document.createElement('h3');
-      h3Name.textContent = company.name;
-      h3Name.setAttribute('class', 'name');
-      card.appendChild(h3Name);
+        var imageWrapper = document.createElement('div');
+        imageWrapper.setAttribute('class', `company-logo_wrapper ${level}`);
+        var logo = document.createElement('img');
+        logo.src = company.logo;
+        logo.alt = company.DisplayName + ' Logo';
+        logo.setAttribute('class', `company-logo ${level}`);
+        card.appendChild(logo);
 
-      var h3DisplayName = document.createElement('h3');
-      h3DisplayName.textContent = company.displayName;
-      h3DisplayName.setAttribute('class', 'display-name');
-      card.appendChild(h3DisplayName);
+        var h3DisplayName = document.createElement('h3');
+        h3DisplayName.textContent = company.displayName;
+        h3DisplayName.setAttribute('class', 'company-name');
+        card.appendChild(h3DisplayName);
 
-      var logo = document.createElement('img');
-      logo.src = company.logo;
-      logo.alt = company.DisplayName + ' Logo';
-      logo.setAttribute('class', 'company-logo');
-      card.appendChild(logo);
-
-      var pLevel = document.createElement('p');
-      pLevel.textContent = company.level;
-      pLevel.setAttribute('class', 'giving-level');
-      card.appendChild(pLevel);
-
-      var pWebsites = document.createElement('p');
-      pWebsites.textContent = company.website;
-      pWebsites.setAttribute('class', 'website-url');
-      card.appendChild(pWebsites);
-
-      var pMetro = document.createElement('p');
-      pMetro.textContent = company.metro;
-      pMetro.setAttribute('class', 'metro');
-      card.appendChild(pMetro);
-
-      // Append the card to the div with "Cards-Container" id
-      document.getElementById('Cards-Container').appendChild(card);
+        // Append the card to the div with "cards-container" id
+        document.getElementById(`${level} cards-container`).appendChild(card);
+      });
     });
   } else {
     console.log('error');
   }
 };
-
 // Send request
 request.send();
